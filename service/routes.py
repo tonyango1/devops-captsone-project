@@ -13,6 +13,8 @@ from . import app  # Import Flask application
 ############################################################
 # Health Endpoint
 ############################################################
+
+
 @app.route("/health")
 def health():
     """Health Status"""
@@ -22,6 +24,8 @@ def health():
 ######################################################################
 # GET INDEX
 ######################################################################
+
+
 @app.route("/")
 def index():
     """Root URL response"""
@@ -38,6 +42,8 @@ def index():
 ######################################################################
 # CREATE A NEW ACCOUNT
 ######################################################################
+
+
 @app.route("/accounts", methods=["POST"])
 def create_accounts():
     """
@@ -51,7 +57,7 @@ def create_accounts():
     account.create()
     message = account.serialize()
     # Uncomment once get_accounts has been implemented
-5000 account.create()
+    account.create()
     message = account.serialize()
     # Uncomment once get_accounts has been implemented
     # location_url = url_for("get_accounts", account_id=account.id, _external=True)
@@ -63,6 +69,8 @@ def create_accounts():
 ######################################################################
 # LIST ALL ACCOUNTS
 ######################################################################
+
+
 @app.route("/accounts", methods=["GET"])
 def list_accounts():
     """List all Accounts"""
@@ -78,6 +86,8 @@ def list_accounts():
 ######################################################################
 # READ AN ACCOUNT
 ######################################################################
+
+
 @app.route("/accounts/<id>", methods=["GET"])
 def read_account(id):
     """Reads an account based on the id that is requested"""
@@ -91,6 +101,8 @@ def read_account(id):
 ######################################################################
 # UPDATE AN EXISTING ACCOUNT
 ######################################################################
+
+
 @app.route("/accounts/<id>", methods=["PUT"])
 def update_account(id):
     """Updates an account based on the id that is requested"""
@@ -101,13 +113,13 @@ def update_account(id):
 
     account.deserialize(request.get_json())
     account.update()
-    
     return account.serialize(), status.HTTP_200_OK
-
 
 ######################################################################
 # DELETE AN ACCOUNT
 ######################################################################
+
+
 @app.route("/accounts/<id>", methods=["DELETE"])
 def delete_account(id):
     """Deletes an account based on the id that is requested"""
@@ -115,7 +127,6 @@ def delete_account(id):
     account = Account.find(id)
     if account:
         account.delete()
-        
     return "", status.HTTP_204_NO_CONTENT
 
 ######################################################################
